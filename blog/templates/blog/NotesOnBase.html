@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %} LOADS STATIC CSS FOLDER (ONE WITH APP NAME)
+
+
+LINE 16: <link rel="stylesheet" type='text/css' href="{% static 'blog/main.css' %}">
+THIS LOADS THE FILE
+
+CREATED STATIC FOLDER FOR CSS AND JAVASCRIPT REQUIRED
+
+
+CHECK LINE 16 AND 4
+
+
+<head>
+
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>Django Blog - {{title}}</title>
+    {% else %}
+        <title>No Title Selected</title>
+    {% endif %}
+</head>
+<body>
+    {% block content%} <!-- The Bit that Templates can override (home etc)-->
+    
+    {% endblock %}
+</body>
+</html>

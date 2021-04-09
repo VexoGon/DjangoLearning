@@ -1,0 +1,33 @@
+<small class="text-muted">{{ post.dateposted | date:"F d, Y"}}</small> <!--DATA FORMATTING GOOGLE THE DOCS FOR MORE-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       {% if title %} <!--iF there is a title-->
+        <title></title>
+    {% else %}
+        <title>No Title Selected</title>
+    {% endif %}
+</head>
+<body>
+    {% for post in posts %}#<!--Use {{}} For Var and Data {% %} for logic-->
+        <h1>{{ post.title }}</h1>
+        <p>By {{post.author}} on {{post.data_posted}}</p>
+        <p>{{post.Content}}</p>
+    {% endfor %} 
+#<!--Ends Loop-->
+</body>
+</html>
+<!-- New system uses Base Template-->
+{% extends 'blog/blog.html' %}
+{% block content %}
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>By {{post.author}} on {{post.data_posted}}</p>
+        <p>{{post.Content}}</p>
+{% endblock content %}
