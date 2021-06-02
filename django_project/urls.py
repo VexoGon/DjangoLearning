@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls), #when we go to 'admin/' Go to admin.site.urls
     path('blog/', include('blog.urls')), #When we go to blog/ Go to the blog app URLS file. 'Blog/' Anything past the / is path var in views.py in app (this case blog)
     path('register/',auth_views.register, name='register'), #Calls register view func
-    path('login/', authviews.LoginView.as_view(template_name='users/login.html'), name='login'), #Calls built in Login view(No temp), passed in custom path, for temp.
+    path('login/', authviews.LoginView.as_view(template_name='users/login.html'), name='login'), #Renders premade Django login view (creates form etc) Template just changes a few things up (our html).
+    #Above also checks login matches User, If so, it logins a user in under that Model so we can do User. etc
     #path('logout/', authviews.LogoutView.as_view(template_name='users/logout.html'), name='logout'), #Doesn't use default temp
     path('logout/', authviews.LogoutView.as_view(template_name='users/logout.html'), name='logout'),#Uses custom temp
     path('profile/', auth_views.profile, name='profile'), 
