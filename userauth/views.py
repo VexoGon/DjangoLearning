@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 #from django.contrib.auth.forms import UserCreationForm #Allows us to use django user form
 from django.contrib import messages
-from .forms import userReg #Gives us the extra forms in forms.py
+from .forms import profileUpdateForm, userReg,UserUpdateForm #Gives us the extra forms in forms.py
 # Create your views here. ANYTHING IN VIEW.PY CAN BE ACCESED IN TEMPLATES
 from django.contrib.auth.decorators import login_required
 
@@ -22,6 +22,14 @@ def register(request):
 #This view is called direct from urls.py in project
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    u_form = UserUpdateForm(instance=request.user)#Auto fills with signed in Users info ready to change
+    p_form = profileUpdateForm(instance=request.user.profile)#Works  because one2one
 
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'users/profile.html', context)
 #This Code first renders
